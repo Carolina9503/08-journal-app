@@ -6,8 +6,14 @@
     font-size: 12px;
     padding: 7px 10px 7px 10px;
 
+    transition: color .3s ease;
+
     &:focus {//cuando este seleccionado 
         outline: none; //quitale el borde al boton
+    }
+
+    &:hover {
+        color: darken($color: white, $amount: 10);
     }
  
 }

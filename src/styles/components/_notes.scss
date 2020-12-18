@@ -1,0 +1,48 @@
+.notes__main-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.notes__appbar {
+    align-items: center;
+    background-color: $primary;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px 10px 20px; //20 a la derecha, 10abajo y 20 en la izquierda 
+}
+
+.notes__content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+}
+
+.notes__title-input, .notes__textarea {
+    border: none; //quita los bordes o la caja del input y textarea
+
+    //para quitarle el borde o caja cuando el maus esta encima
+    &:focus {
+        outline: none;
+    }
+
+}
+
+.notes__title-input {
+    color: $dark-grey;
+    font-size: 25px; //tamaño de letra
+    font-weight: 700; // letras gruesas
+    margin-bottom: 10px;
+}
+.notes__textarea {
+    border: none; //border: 1px solid black colocar border o caja de 1 px
+    color: $dark-grey;
+    font-size: 20px;
+    flex: 1 1 auto; // para que se expanda lo mas posible osea mas grande
+    resize: none;
+}
+.notes__image img {
+    box-shadow: 5px 5px $dark-grey;
+    height: 150px;
+}

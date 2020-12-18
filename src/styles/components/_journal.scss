@@ -7,8 +7,84 @@
     color: white;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100vh;
     padding-left: 10px;
     padding-right: 10px;
     width: 450px;
+}
+
+.journal__sidebar-navbar{
+    display: flex;
+    justify-content: space-between; // para que se empujen hasta los bordes
+
+}
+.journal__sidebar-navbar h3 {
+    font-weight: lighter; // colocar un copo delgado
+}
+
+.journal__new-entry {
+    align-items: center;
+    cursor: pointer;//para que parezca que se puede hacer click en el
+    display: flex;
+    flex-direction: column; //para que este una bajo la otra
+    justify-content: center;
+    margin-top: 30px;
+    width: 100%;
+
+    transition: color .3s ease; //para que el color del hover tenga transicion de 3 segundos
+
+    &:hover {
+        color: darken($color: white, $amount: 20);
+    }
+
+}
+
+.journal__entries{
+    flex: 1 1 auto; //para que uses todo el espacio restante
+    margin-top: 30px;
+    overflow: scroll; // lo que sea que se pase vamosa a colocarlo con scroll
+
+}
+
+.journal__entry {
+    background-color: white;
+    border-radius: 4px;
+    color: $dark-grey;
+    display: flex;
+    margin-bottom: 10px;
+    overflow: hidden; //para cualquier cosa que se pase
+
+}
+
+//estilos para la imagen
+.journal__entry-picture {
+    height: 75px;
+    width: 75px;
+
+}
+
+.journal__entry-body {
+    padding: 10px;
+
+}
+.journal__entry-title {
+    font-size: 14px;
+    font-weight: bold; //fuente
+
+}
+.journal__entry-content {
+    font-size: 10px;
+
+}
+
+.journal__entry-date-box{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+}
+
+.journal__entry-date-box span {
+    font-size: 12px;
 }
