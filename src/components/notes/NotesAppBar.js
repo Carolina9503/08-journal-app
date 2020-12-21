@@ -10,9 +10,9 @@ export const NotesAppBar = () => {
                     Picture
                 </button>
 
-                <butoon className="btn">
+                <button className="btn">
                     Save
-                </butoon>
+                </button>
             </div>
             
         </div>
