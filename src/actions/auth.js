@@ -61,5 +61,20 @@ export const login = (uid, displayName) => ({
         uid,
         displayName
     }   
+});
+
+//accion asyncrona por que la parte de firebase tengo que dispararla y ejecutar el logout con una instruccion de firebase que regresa una promesa
+export const startLogout = () => {
+    return async( dispatch ) =>{
+        await firebase.auth().signOut();
+
+        dispatch( logout() );
+
+    }
+}
+
+export const logout = () => ({
+    type: types.logout
+
 })
  
