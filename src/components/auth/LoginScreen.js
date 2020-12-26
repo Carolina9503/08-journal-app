@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -13,7 +12,7 @@ export const LoginScreen = () => {
 
 
     const [ formValues, handleInputChange ] = useForm({
-        email: 'karito9503@gmail.com',
+        email: 'sebas@gmail.com',
         password: '123456'
     });
 
@@ -21,7 +20,7 @@ export const LoginScreen = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        dispatch( startLoginEmailPassword(email, 'password') ) ; 
+        dispatch( startLoginEmailPassword(email, password) ) ; 
     } 
     const handleGoogleLogin = () => {
         dispatch( startGoogleLogin() );
