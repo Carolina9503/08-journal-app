@@ -1,17 +1,24 @@
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 import { types } from "../types/types";
+import { startLoading, finishLoading } from './ui';
 
 //autenticacion del login
 export const startLoginEmailPassword = (email, password) => {
+    //El dispatch se va a encargar de enviar la respectiva accion al reducer(a todos los reducer) pero como el nombre de nuestros typos o acciones son unicas entonces solo hay un reducer que va a ejecutar esa accion
     return (dispatch) => {
+        
+        dispatch (startLoading() );
 
         firebase.auth().signInWithEmailAndPassword( email, password )
         .then(({ user }) => {       //desestruccturamos userCred
-            dispatch(
-                login( user.uid, user.displayName )
-            )
-        })
+            dispatch(login( user.uid, user.displayName ) );
 
+            dispatch( finishLoading() );
+        })
+        .catch( e => {
+            console.log(e);
+            dispatch( finishLoading() );
+        })
     }
 }
 
