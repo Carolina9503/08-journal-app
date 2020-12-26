@@ -1,6 +1,6 @@
 // El router principal
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -20,6 +20,9 @@ export const AppRouter = () => {
 
     //ya puedo hacer dispatch de cualquier accion
     const dispatch = useDispatch();
+    //va a manejar mi estado de farebase todavia no tengo respuesta, mientras esto sea true no voy a mostrar mas nada de mi aplicacion
+    const [ checking, setChecking ] = useState(true);
+    const [ isLoggedIn, setIsLoggedIn ] = useState(false)
 
 
     useEffect(() => {
@@ -28,17 +31,25 @@ export const AppRouter = () => {
 
         firebase.auth().onAuthStateChanged( ( user ) => {
             // console.log(user);
-
             //user? evalua si el objeto user tiene algo entonces pregunta si existe el uid
             if ( user?.uid ) {
                 dispatch( login( user.uid, user.displayName ) );
-                
-            } 
+                setIsLoggedIn( true );
+            }else{
+                setIsLoggedIn( false );
+            }
+
+            setChecking(false);
 
         });
-    }, [ dispatch ])
+    }, [ dispatch, setChecking, setIsLoggedIn ])
 
-
+    if ( checking ) {
+        return (
+            <h1>Espere...</h1>
+        )
+        
+    }
 
 
     return (
