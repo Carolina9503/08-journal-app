@@ -4,7 +4,7 @@ autenticado va a tener lo siguiente:
 { 
     uid: '12223444',
     name: 'Carolina'
-}
+} 
 */
 
 import { types } from "../types/types";
