@@ -1,4 +1,5 @@
 import { db } from "../firebase/firebase-config";
+import { types } from "../types/types";
 
 
 
@@ -7,7 +8,6 @@ export const startNewNote = ( state, action) => {
     return async( dispatch, getState ) => {
         // grabar en firestore necesitamos el id de la perssona por eso utilizamos la funcion getState para obtener el state
         const {uid} = getState().auth;
-        console.log(uid);
         //crear la nota
         const newNote = {
             title: '',
@@ -17,7 +17,14 @@ export const startNewNote = ( state, action) => {
         }
 
         const doc = await db.collection(`${ uid }/journal/notes`).add( newNote );
-        console.log(doc )
+        dispatch( activeNote( doc.id, newNote ) );
     }
-
 }
+//crearemos otra accion syncrona
+export const activeNote = ( id, note) => ({
+    type: types.notesActive,
+    payload: {
+        id,
+        ...note
+    }
+})
