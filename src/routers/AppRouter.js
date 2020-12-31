@@ -16,6 +16,8 @@ import { PublicRouter } from './PublicRouter';
 
 import { JournalScreen } from '../components/journal/JournalScreen';
 import { login } from '../actions/auth';
+import { loadNotes } from '../helpers/loadNotes';
+import { setNote } from '../actions/notes';
 
 export const AppRouter = () => {
 
@@ -30,12 +32,16 @@ export const AppRouter = () => {
         //firebase en su auth (archivo  firebaseConfig) ya trae algo que me dice cuando el estado de la autenticacion cambia
         //onAuthStateChanged() lo que va a hacer es crearse un observable que es un tipo de objeto especial que se puede disparar mas de una vez
 
-        firebase.auth().onAuthStateChanged( ( user ) => {
+        firebase.auth().onAuthStateChanged( async( user ) => {
             // console.log(user);
             //user? evalua si el objeto user tiene algo entonces pregunta si existe el uid
             if ( user?.uid ) {
                 dispatch( login( user.uid, user.displayName ) );
                 setIsLoggedIn( true );
+
+                const notes = await loadNotes( user.uid);
+                dispatch( setNote( notes ));
+
             }else{
                 setIsLoggedIn( false );
             }
