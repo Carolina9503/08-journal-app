@@ -43,4 +43,24 @@ export const setNotes = (notes) =>( {
     type: types.notesLoad,
     payload: notes
 
-})
+});
+
+//accion asyncrona para guardar en la base de datos de firebase https://console.firebase.google.com/project/react-app-curso-70fee/firestore/data~2FsxBmbkLlLMPFhrtiQJNPLMdvCBi1~2Fjournal~2Fnotes~2FAbKMfhBZE4otnsFRaGKp
+export const startSaveNote = ( note ) => {
+    return async(dispatch, getState) => {
+
+        const { uid } = getState().auth
+
+        if (!note.url) {
+            delete( note.url )            
+        }
+
+        //eliminar el id en el objeto note
+        const noteToFirestore = { ...note };
+        delete noteToFirestore.id;
+
+        await db.doc(`${ uid }/journal/notes/${ note.id }`).update( noteToFirestore );
+
+    }
+
+}
