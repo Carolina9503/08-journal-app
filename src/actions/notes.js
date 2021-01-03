@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+
 import { db } from "../firebase/firebase-config";
 import { loadNotes } from "../helpers/loadNotes";
 import { types } from "../types/types";
@@ -60,7 +62,22 @@ export const startSaveNote = ( note ) => {
         delete noteToFirestore.id;
 
         await db.doc(`${ uid }/journal/notes/${ note.id }`).update( noteToFirestore );
+        dispatch( refreshNote(note.id, note) );
+        Swal.fire('Saved', note.title, 'success');
 
     }
-
 }
+
+//accion que actualiza  mi store unicamente lo que cambio en este momento solo el title y el body
+//va a ser syncrona por que toda la informacion la tenemos local
+export const refreshNote = ( id, note ) => ({
+    type: types.notesUpdated,
+    payload: {
+        id,
+        note: {
+            id,
+            ...note
+        }
+    }
+
+})
