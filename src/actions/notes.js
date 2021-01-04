@@ -112,3 +112,22 @@ export const startUploading = ( file ) => {
 
     }
 }
+
+//tarea asyncrona para borrar
+export const startDeleting = ( id ) => {
+    return async( dispatch, getState ) => {
+
+        const {uid} = getState().auth
+        await db.doc(`${ uid }/journal/notes/${ id }`).delete(); //aqui borramos en la bd
+
+        dispatch( deleteNote( id ) );
+    }
+
+}
+
+//tarea syncrona
+//entonces unicamente voy a regresar el objeto ()
+export const deleteNote = ( id ) => ({
+    type: types.notesDelete,
+    payload: id
+})
