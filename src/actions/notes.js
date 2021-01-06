@@ -9,7 +9,7 @@ import { types } from "../types/types";
 
 
 
-export const startNewNote = ( state, action) => {
+export const startNewNote = () => {
     // tarea asyncrona se hace con el return y el colbag respectivo
     return async( dispatch, getState ) => {
         // grabar en firestore necesitamos el id de la perssona por eso utilizamos la funcion getState para obtener el state

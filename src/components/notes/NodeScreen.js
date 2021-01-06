@@ -16,7 +16,7 @@ export const NodeScreen = () => {
    const { title, body, id } = formValues;
 
    const activeId = useRef( note.id );
-
+ 
    useEffect(() => {
     if (note.id !== activeId.current) {
          reset( note ); 
