@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-  console.log(process.env )
+  // console.log(process.env )
   
 
  // Your web app's Firebase configuration
